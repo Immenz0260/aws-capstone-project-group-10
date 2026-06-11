@@ -7,56 +7,20 @@ on:
 
 jobs:
   deploy:
-    runs-on: Amazon Linux
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Deploy to EC2 via SSH
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
+          username: ec2-user
           key: ${{ secrets.EC2_SSH_KEY }}
-          port: 22
           script: |
-            set -e
-            echo "=== Starting deployment at $(date) ==="
-
-            # Navigate to app directory
-            cd /var/www/app
-
-            # Pull latest code
-            git fetch origin main
-            git reset --hard origin/main
-
-            # Install dependencies
-            if [ -f package.json ]; then
-              npm ci --production
-            elif [ -f requirements.txt ]; then
-              pip install -r requirements.txt
-            fi
-
-            # Run database migrations if applicable
-            # npm run migrate  # Uncomment if using Node.js migrations
-            # python manage.py migrate  # Uncomment if using Django
-
-            # Restart application service
-            sudo systemctl restart app.service
-
-            # Verify deployment
-            sleep 5
-            if sudo systemctl is-active --quiet app.service; then
-              echo "=== Deployment successful at $(date) ==="
-            else
-              echo "=== Deployment FAILED - service not running ==="
-              sudo journalctl -u app.service -n 50
-              exit 1
-            fi
-
-      - name: Notify on failure
-        if: failure()
-        run: |
-          echo "Deployment failed! Check GitHub Actions logs."
-          # Add Slack/email notification here if needed
+            set -x
+            cd /var/www/html/aws-capstone-project-group-10
+            git pull origin main
+            sudo systemctl restart nginx
