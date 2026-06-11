@@ -21,5 +21,13 @@ jobs:
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
             cd /var/www/html
-            git pull origin main
+            # Check if git repo exists, if not clone it
+            if [ ! -d .git ]; then
+              cd /var/www
+              rm -rf html
+              git clone https://github.com/Immenz0260/aws-capstone-project-group-10.git html
+              cd html
+            else
+              git pull origin main
+            fi
             sudo systemctl restart nginx
