@@ -4,7 +4,6 @@
     host: ${{ secrets.EC2_HOST }}
     username: ec2-user
     key: ${{ secrets.EC2_SSH_KEY }}
-    debug: true
     script: |
       set -x
       cd /var/www/html/aws-capstone-project-group-10
