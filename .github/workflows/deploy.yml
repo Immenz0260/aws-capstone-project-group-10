@@ -1,16 +1,12 @@
-steps:
-  - name: Checkout Code
-    uses: actions/checkout@v4
-
-  - name: Test EC2 Host Only
-    run: echo "HOST IS: ${{ secrets.EC2_HOST }}"
-
-  - name: Deploy to EC2
-    uses: appleboy/ssh-action@master
-    with:
-      host: ${{ secrets.EC2_HOST }}
-      username: ec2-user
-      key: ${{ secrets.EC2_SSH_KEY }}
-      script: |
-        cd /var/www/html/aws-capstone-project-group-10
-        git pull origin main
+- name: Deploy to EC2
+  uses: appleboy/ssh-action@master
+  with:
+    host: ${{ secrets.EC2_HOST }}
+    username: ec2-user
+    key: ${{ secrets.EC2_SSH_KEY }}
+    debug: true
+    script: |
+      set -x
+      cd /var/www/html/aws-capstone-project-group-10
+      git pull origin main
+      sudo systemctl restart nginx
