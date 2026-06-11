@@ -2,8 +2,8 @@ steps:
   - name: Checkout Code
     uses: actions/checkout@v4
 
-  - name: Debug EC2 Host
-    run: echo "HOST=${{ secrets.EC2_HOST }}"
+  - name: Test EC2 Host Only
+    run: echo "HOST IS: ${{ secrets.EC2_HOST }}"
 
   - name: Deploy to EC2
     uses: appleboy/ssh-action@master
