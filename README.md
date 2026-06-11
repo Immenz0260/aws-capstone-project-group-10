@@ -7,7 +7,6 @@ The project focuses on setting up and managing core AWS services, implementing a
 ## Team Members
 1. Barbara Nti Nkansah
 2. Emmanuel Yeboah
-3. Jessica Emefa Torgbenu-Banini
 4. Nicholina Adjetey
 5. Susan Darke
 
