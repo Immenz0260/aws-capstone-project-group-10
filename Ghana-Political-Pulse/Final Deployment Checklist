@@ -1,0 +1,13 @@
+## Final Deployment Checklist
+
+✔ GitHub repository initialized  
+✔ Web application developed (HTML/CSS/JS)  
+✔ Code pushed to GitHub  
+✔ EC2 instance deployed  
+✔ Security groups configured  
+✔ Load balancer configured  
+✔ CI/CD pipeline working  
+✔ CloudWatch monitoring set up  
+✔ AWS Budgets alert configured  
+✔ Final testing completed  
+✔ Peer code review completed  
