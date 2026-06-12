@@ -65,3 +65,5 @@ The project focuses on setting up and managing core AWS services, implementing a
                     |
                     |
                     v
+  <img width="1536" height="1024" alt="Group 10 capstone diagram" src="https://github.com/user-attachments/assets/59e927dd-1e05-4cd2-bed3-62486beffa6a" />
+
